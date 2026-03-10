@@ -1,0 +1,111 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@open-core/framework':
+        specifier: file:../opencore-framework
+        version: file:../opencore-framework(reflect-metadata@0.2.2)(tsyringe@4.10.0)(zod@4.3.6)
+      reflect-metadata:
+        specifier: ^0.2.2
+        version: 0.2.2
+      tsyringe:
+        specifier: ^4.10.0
+        version: 4.10.0
+      zod:
+        specifier: ^4.3.5
+        version: 4.3.6
+    devDependencies:
+      '@citizenfx/client':
+        specifier: 2.0.22443-1
+        version: 2.0.22443-1
+      '@citizenfx/server':
+        specifier: 2.0.22443-1
+        version: 2.0.22443-1
+      '@types/node':
+        specifier: ^25.0.3
+        version: 25.4.0
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
+packages:
+
+  '@citizenfx/client@2.0.22443-1':
+    resolution: {integrity: sha512-fCnYxGrFCl1iUxS1oAbmwXCuouLd+MzMjLrvVIv9Q/2/H7SyhPDHLZVOedUZmkG0gWvt4wGk1Pjcv41uzmVlhA==}
+
+  '@citizenfx/server@2.0.22443-1':
+    resolution: {integrity: sha512-QbLuZQ0JnFXu59d4x0Z0qN3Bu+tb38oK4+E3DvB0zg172+EzrdGnfX66KprlM8JEjDvItTR4fSIVUWJyNYzULQ==}
+
+  '@open-core/framework@file:../opencore-framework':
+    resolution: {directory: ../opencore-framework, type: directory}
+    peerDependencies:
+      reflect-metadata: ^0.2.2
+      tsyringe: ^4.10.0
+      zod: ^4.3.5
+
+  '@types/node@25.4.0':
+    resolution: {integrity: sha512-9wLpoeWuBlcbBpOY3XmzSTG3oscB6xjBEEtn+pYXTfhyXhIxC5FsBer2KTopBlvKEiW9l13po9fq+SJY/5lkhw==}
+
+  reflect-metadata@0.2.2:
+    resolution: {integrity: sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==}
+
+  tslib@1.14.1:
+    resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+
+  tsyringe@4.10.0:
+    resolution: {integrity: sha512-axr3IdNuVIxnaK5XGEUFTu3YmAQ6lllgrvqfEoR16g/HGnYY/6We4oWENtAnzK6/LpJ2ur9PAb80RBt7/U4ugw==}
+    engines: {node: '>= 6.0.0'}
+
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  undici-types@7.18.2:
+    resolution: {integrity: sha512-AsuCzffGHJybSaRrmr5eHr81mwJU3kjw6M+uprWvCXiNeN9SOGwQ3Jn8jb8m3Z6izVgknn1R0FTCEAP2QrLY/w==}
+
+  uuid@13.0.0:
+    resolution: {integrity: sha512-XQegIaBTVUjSHliKqcnFqYypAd4S+WCYt5NIeRs6w/UAry7z8Y9j5ZwRRL4kzq9U3sD6v+85er9FvkEaBpji2w==}
+    hasBin: true
+
+  zod@4.3.6:
+    resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
+
+snapshots:
+
+  '@citizenfx/client@2.0.22443-1': {}
+
+  '@citizenfx/server@2.0.22443-1': {}
+
+  '@open-core/framework@file:../opencore-framework(reflect-metadata@0.2.2)(tsyringe@4.10.0)(zod@4.3.6)':
+    dependencies:
+      reflect-metadata: 0.2.2
+      tsyringe: 4.10.0
+      uuid: 13.0.0
+      zod: 4.3.6
+
+  '@types/node@25.4.0':
+    dependencies:
+      undici-types: 7.18.2
+
+  reflect-metadata@0.2.2: {}
+
+  tslib@1.14.1: {}
+
+  tsyringe@4.10.0:
+    dependencies:
+      tslib: 1.14.1
+
+  typescript@5.9.3: {}
+
+  undici-types@7.18.2: {}
+
+  uuid@13.0.0: {}
+
+  zod@4.3.6: {}
