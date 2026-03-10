@@ -1,6 +1,5 @@
+import { IdentifierTypes, IPlatformCapabilities, PlatformFeatures } from '@open-core/framework'
 import { injectable } from 'tsyringe'
-import { IPlatformCapabilities, PlatformFeatures } from '../../../opencore-framework/dist/adapters/contracts/IPlatformCapabilities'
-import { IdentifierTypes } from '../../../opencore-framework/dist/adapters/contracts/types/identifier'
 
 /**
  * FiveM platform capabilities implementation.

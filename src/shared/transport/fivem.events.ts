@@ -1,6 +1,6 @@
-import { EventsAPI } from '../../../../opencore-framework/dist/adapters/contracts/transport/events.api'
-import { RuntimeContext } from '../../../../opencore-framework/dist/adapters/contracts/transport/context'
-import { Player } from '../../../../opencore-framework/dist/runtime/server/entities/player'
+import { EventsAPI } from '@open-core/framework'
+import { RuntimeContext } from '@open-core/framework'
+import { Player } from '@open-core/framework/server'
 
 export class FiveMEvents extends EventsAPI<RuntimeContext> {
   constructor(private readonly context: RuntimeContext) {
@@ -22,9 +22,9 @@ export class FiveMEvents extends EventsAPI<RuntimeContext> {
     const [target, ...payload] = args
     const send = (id: number) => emitNet(event, id, ...payload)
 
-    if (target === 'all') return send(-1)
-    if (Array.isArray(target)) return target.forEach(send)
-    if (target instanceof Player) return send(target.clientID)
+    if (target === 'all') send(-1)
+    if (Array.isArray(target)) target.forEach(send)
+    if (target instanceof Player) send(target.clientID)
     send(target)
   }
 }

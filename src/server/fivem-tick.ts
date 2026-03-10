@@ -1,5 +1,5 @@
 import { injectable } from 'tsyringe'
-import { ITick } from '../../../opencore-framework/dist/adapters/contracts/ITick'
+import { ITick } from '@open-core/framework'
 
 /**
  * FiveM implementation of ITick using native setTick

@@ -1,10 +1,10 @@
 import { injectable } from 'tsyringe'
-import { Vector3 } from '../../../opencore-framework/dist/kernel/utils/vector3'
+import { Vector3 } from '@open-core/framework'
 import {
   type EntityStateBag,
   IEntityServer,
   type SetPositionOptions,
-} from '../../../opencore-framework/dist/adapters/contracts/server/IEntityServer'
+} from '@open-core/framework'
 
 /**
  * FiveM implementation of server-side entity operations.

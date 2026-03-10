@@ -1,16 +1,20 @@
-import { IPedAppearanceClient } from '../../../opencore-framework/dist/adapters/contracts/client/IPedAppearanceClient'
-import { IHasher } from '../../../opencore-framework/dist/adapters/contracts/IHasher'
-import { defineClientAdapter, IClientLocalPlayerBridge, IClientRuntimeBridge, type OpenCoreClientAdapter } from '@open-core/framework/client'
+import {
+  defineClientAdapter,
+  IClientLocalPlayerBridge,
+  IClientRuntimeBridge,
+  type OpenCoreClientAdapter,
+} from '@open-core/framework/client'
 import { FiveMHasher } from '../server/fivem-hasher'
 import { FiveMMessagingTransport } from '../shared/transport/adapter'
 import { FiveMLocalPlayerBridge } from './fivem-local-player-bridge'
 import { FiveMPedAppearanceClientAdapter } from './fivem-ped-appearance-client'
 import { FiveMRuntimeBridge } from './fivem-runtime-bridge'
+import { IHasher, IPedAppearanceClient } from '@open-core/framework'
 
 /**
  * Creates the external FiveM client adapter.
  */
-export function createFiveMClientAdapter(): OpenCoreClientAdapter {
+export function FiveMClientAdapter(): OpenCoreClientAdapter {
   return defineClientAdapter({
     name: 'fivem',
     register(ctx) {
@@ -22,3 +26,8 @@ export function createFiveMClientAdapter(): OpenCoreClientAdapter {
     },
   })
 }
+
+/**
+ * Backward-compatible factory name for external consumers.
+ */
+export const createFiveMClientAdapter = FiveMClientAdapter

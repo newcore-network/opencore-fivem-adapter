@@ -1,5 +1,4 @@
-import { HeadBlendData } from '../../../opencore-framework/dist/kernel/shared'
-import { IPedAppearanceClient } from '../../../opencore-framework/dist/adapters/contracts/client/IPedAppearanceClient'
+import { HeadBlendData, IPedAppearanceClient } from "@open-core/framework"
 
 /**
  * FiveM implementation of client-side ped appearance adapter.

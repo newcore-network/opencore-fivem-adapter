@@ -1,6 +1,6 @@
 import { injectable } from 'tsyringe'
-import { IPlayerServer } from '../../../opencore-framework/dist/adapters/contracts/server/IPlayerServer'
-import { type PlayerIdentifier, parseIdentifier } from '../../../opencore-framework/dist/adapters/contracts/types/identifier'
+import { IPlayerServer } from '@open-core/framework'
+import { type PlayerIdentifier, parseIdentifier } from '@open-core/framework'
 
 /**
  * FiveM implementation of server-side player operations.

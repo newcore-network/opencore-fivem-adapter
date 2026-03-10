@@ -1,4 +1,4 @@
-import { IResourceInfo } from '../../../opencore-framework/dist/adapters/contracts/IResourceInfo'
+import { IResourceInfo } from '@open-core/framework'
 
 export class FiveMResourceInfo extends IResourceInfo {
   getCurrentResourceName(): string {

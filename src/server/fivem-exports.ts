@@ -1,4 +1,4 @@
-import { IExports } from '../../../opencore-framework/dist/adapters/contracts/IExports'
+import { IExports } from '@open-core/framework'
 
 export class FiveMExports extends IExports {
   register(exportName: string, handler: (...args: any[]) => any): void {

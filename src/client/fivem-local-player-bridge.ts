@@ -1,6 +1,6 @@
 import { injectable } from 'tsyringe'
 import { IClientLocalPlayerBridge } from '@open-core/framework/client'
-import { Vector3 } from '../../../opencore-framework/dist/kernel/utils/vector3'
+import { Vector3 } from '@open-core/framework'
 
 /**
  * FiveM implementation of local player movement helpers.

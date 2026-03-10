@@ -1,15 +1,3 @@
-import { IEngineEvents } from '../../../opencore-framework/dist/adapters/contracts/IEngineEvents'
-import { IExports } from '../../../opencore-framework/dist/adapters/contracts/IExports'
-import { IHasher } from '../../../opencore-framework/dist/adapters/contracts/IHasher'
-import { IPlatformCapabilities } from '../../../opencore-framework/dist/adapters/contracts/IPlatformCapabilities'
-import { IPlayerInfo } from '../../../opencore-framework/dist/adapters/contracts/IPlayerInfo'
-import { IResourceInfo } from '../../../opencore-framework/dist/adapters/contracts/IResourceInfo'
-import { ITick } from '../../../opencore-framework/dist/adapters/contracts/ITick'
-import { IEntityServer } from '../../../opencore-framework/dist/adapters/contracts/server/IEntityServer'
-import { IPedAppearanceServer } from '../../../opencore-framework/dist/adapters/contracts/server/IPedAppearanceServer'
-import { IPedServer } from '../../../opencore-framework/dist/adapters/contracts/server/IPedServer'
-import { IPlayerServer } from '../../../opencore-framework/dist/adapters/contracts/server/IPlayerServer'
-import { IVehicleServer } from '../../../opencore-framework/dist/adapters/contracts/server/IVehicleServer'
 import { defineServerAdapter, type OpenCoreServerAdapter } from '@open-core/framework/server'
 import { FiveMMessagingTransport } from '../shared/transport/adapter'
 import { FiveMCapabilities } from './fivem-capabilities'
@@ -24,11 +12,25 @@ import { FiveMPlayerServer } from './fivem-player-server'
 import { FiveMResourceInfo } from './fivem-resourceinfo'
 import { FiveMTick } from './fivem-tick'
 import { FiveMVehicleServer } from './fivem-vehicle-server'
+import {
+  IPlatformCapabilities,
+  IEngineEvents,
+  IExports,
+  IResourceInfo,
+  ITick,
+  IPlayerInfo,
+  IEntityServer,
+  IPedServer,
+  IVehicleServer,
+  IPlayerServer,
+  IHasher,
+  IPedAppearanceServer,
+} from '@open-core/framework'
 
 /**
  * Creates the external FiveM server adapter.
  */
-export function createFiveMServerAdapter(): OpenCoreServerAdapter {
+export function FiveMServerAdapter(): OpenCoreServerAdapter {
   return defineServerAdapter({
     name: 'fivem',
     register(ctx) {
@@ -48,3 +50,8 @@ export function createFiveMServerAdapter(): OpenCoreServerAdapter {
     },
   })
 }
+
+/**
+ * Backward-compatible factory name for external consumers.
+ */
+export const createFiveMServerAdapter = FiveMServerAdapter

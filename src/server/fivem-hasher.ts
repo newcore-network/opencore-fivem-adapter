@@ -1,5 +1,5 @@
 import { injectable } from 'tsyringe'
-import { IHasher } from '../../../opencore-framework/dist/adapters/contracts/IHasher'
+import { IHasher } from '@open-core/framework'
 
 /**
  * FiveM implementation of hash utilities.

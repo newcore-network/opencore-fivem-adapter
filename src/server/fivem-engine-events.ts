@@ -1,4 +1,4 @@
-import { IEngineEvents } from '../../../opencore-framework/dist/adapters/contracts/IEngineEvents'
+import { IEngineEvents } from '@open-core/framework'
 
 export class FiveMEngineEvents extends IEngineEvents {
   on(eventName: string, handler?: (...args: any[]) => void): void {

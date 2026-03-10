@@ -1,5 +1,5 @@
-import { Vector3 } from '../../../opencore-framework/dist/kernel'
-import { IPlayerInfo } from '../../../opencore-framework/dist/adapters/contracts/IPlayerInfo'
+import { Vector3 } from '@open-core/framework'
+import { IPlayerInfo } from '@open-core/framework'
 
 export class FiveMPlayerInfo implements IPlayerInfo {
   getPlayerName(clientId: number): string | null {

@@ -1,6 +1,6 @@
-import { MessagingTransport } from '../../../../opencore-framework/dist/adapters/contracts/transport/messaging.transport'
 import { FiveMEvents } from './fivem.events'
 import { FiveMRpc } from './fivem.rpc'
+import { MessagingTransport } from '@open-core/framework'
 
 export class FiveMMessagingTransport extends MessagingTransport {
   readonly context = IsDuplicityVersion() ? 'server' : 'client'

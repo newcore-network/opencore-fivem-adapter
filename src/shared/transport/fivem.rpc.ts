@@ -1,5 +1,5 @@
-import { RpcAPI, type RpcTarget } from '../../../../opencore-framework/dist/adapters/contracts/transport/rpc.api'
-import type { RuntimeContext } from '../../../../opencore-framework/dist/adapters/contracts/transport/context'
+import { RpcAPI, type RpcTarget } from '@open-core/framework'
+import type { RuntimeContext } from '@open-core/framework'
 
 type RpcWireCall = {
   kind: 'call'
