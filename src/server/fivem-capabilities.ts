@@ -1,18 +1,13 @@
-import { IdentifierTypes, IPlatformCapabilities, PlatformFeatures } from '@open-core/framework'
+import { IdentifierTypes, IPlatformContext } from '@open-core/framework'
 import { injectable } from 'tsyringe'
 
 /**
- * FiveM platform capabilities implementation.
+ * FiveM platform context implementation.
  */
 @injectable()
-export class FiveMCapabilities extends IPlatformCapabilities {
+export class FiveMPlatformContext extends IPlatformContext {
   readonly platformName = 'fivem'
   readonly displayName = 'FiveM'
-
-  readonly supportsRoutingBuckets = true
-  readonly supportsStateBags = true
-  readonly supportsVoiceChat = true
-  readonly supportsServerEntities = true
 
   readonly identifierTypes = [
     IdentifierTypes.STEAM,
@@ -26,34 +21,8 @@ export class FiveMCapabilities extends IPlatformCapabilities {
   ] as const
 
   readonly maxPlayers = 1024
-
-  private readonly supportedFeatures = new Set<string>([
-    PlatformFeatures.ROUTING_BUCKETS,
-    PlatformFeatures.STATE_BAGS,
-    PlatformFeatures.VOICE_CHAT,
-    PlatformFeatures.SERVER_ENTITIES,
-    PlatformFeatures.VEHICLE_MODS,
-    PlatformFeatures.PED_APPEARANCE,
-    PlatformFeatures.WEAPON_COMPONENTS,
-    PlatformFeatures.BLIPS,
-    PlatformFeatures.MARKERS,
-    PlatformFeatures.TEXT_LABELS,
-    PlatformFeatures.CHECKPOINTS,
-    PlatformFeatures.COLSHAPES,
-  ])
-
-  private readonly config: Record<string, unknown> = {
-    defaultRoutingBucket: 0,
-    maxRoutingBuckets: 63,
-    tickRate: 64,
-    syncRate: 10,
-  }
-
-  isFeatureSupported(feature: string): boolean {
-    return this.supportedFeatures.has(feature)
-  }
-
-  getConfig<T = unknown>(key: string): T | undefined {
-    return this.config[key] as T | undefined
-  }
+  readonly gameProfile = 'gta5'
+  readonly defaultSpawnModel = 'mp_m_freemode_01'
+  readonly defaultVehicleType = 'automobile'
+  readonly enableServerVehicleCreation = true
 }

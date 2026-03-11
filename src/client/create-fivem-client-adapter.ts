@@ -4,8 +4,8 @@ import {
   IClientRuntimeBridge,
   type OpenCoreClientAdapter,
 } from '@open-core/framework/client'
-import { FiveMHasher } from '../server/fivem-hasher'
 import { FiveMMessagingTransport } from '../shared/transport/adapter'
+import { FiveMClientHasher } from './fivem-hasher'
 import { FiveMLocalPlayerBridge } from './fivem-local-player-bridge'
 import { FiveMPedAppearanceClientAdapter } from './fivem-ped-appearance-client'
 import { FiveMRuntimeBridge } from './fivem-runtime-bridge'
@@ -20,7 +20,7 @@ export function FiveMClientAdapter(): OpenCoreClientAdapter {
     register(ctx) {
       ctx.bindMessagingTransport(new FiveMMessagingTransport())
       ctx.bindSingleton(IPedAppearanceClient as any, FiveMPedAppearanceClientAdapter)
-      ctx.bindSingleton(IHasher as any, FiveMHasher)
+      ctx.bindSingleton(IHasher as any, FiveMClientHasher)
       ctx.bindSingleton(IClientRuntimeBridge as any, FiveMRuntimeBridge)
       ctx.bindSingleton(IClientLocalPlayerBridge as any, FiveMLocalPlayerBridge)
     },

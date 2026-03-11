@@ -1,6 +1,14 @@
 import { EventsAPI } from '@open-core/framework'
 import { RuntimeContext } from '@open-core/framework'
-import { Player } from '@open-core/framework/server'
+
+function isPlayerTarget(value: unknown): value is { clientID: number } {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'clientID' in value &&
+    typeof (value as { clientID: unknown }).clientID === 'number'
+  )
+}
 
 export class FiveMEvents extends EventsAPI<RuntimeContext> {
   constructor(private readonly context: RuntimeContext) {
@@ -22,9 +30,18 @@ export class FiveMEvents extends EventsAPI<RuntimeContext> {
     const [target, ...payload] = args
     const send = (id: number) => emitNet(event, id, ...payload)
 
-    if (target === 'all') send(-1)
-    if (Array.isArray(target)) target.forEach(send)
-    if (target instanceof Player) send(target.clientID)
+    if (target === 'all') {
+      send(-1)
+      return
+    }
+    if (Array.isArray(target)) {
+      target.forEach(send)
+      return
+    }
+    if (isPlayerTarget(target)) {
+      send(target.clientID)
+      return
+    }
     send(target)
   }
 }

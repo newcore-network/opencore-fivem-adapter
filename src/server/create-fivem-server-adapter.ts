@@ -1,6 +1,6 @@
 import { defineServerAdapter, type OpenCoreServerAdapter } from '@open-core/framework/server'
 import { FiveMMessagingTransport } from '../shared/transport/adapter'
-import { FiveMCapabilities } from './fivem-capabilities'
+import { FiveMPlatformContext } from './fivem-capabilities'
 import { FiveMEngineEvents } from './fivem-engine-events'
 import { FiveMEntityServer } from './fivem-entity-server'
 import { FiveMExports } from './fivem-exports'
@@ -13,7 +13,7 @@ import { FiveMResourceInfo } from './fivem-resourceinfo'
 import { FiveMTick } from './fivem-tick'
 import { FiveMVehicleServer } from './fivem-vehicle-server'
 import {
-  IPlatformCapabilities,
+  IPlatformContext,
   IEngineEvents,
   IExports,
   IResourceInfo,
@@ -35,7 +35,7 @@ export function FiveMServerAdapter(): OpenCoreServerAdapter {
     name: 'fivem',
     register(ctx) {
       ctx.bindMessagingTransport(new FiveMMessagingTransport())
-      ctx.bindSingleton(IPlatformCapabilities as any, FiveMCapabilities)
+      ctx.bindSingleton(IPlatformContext as any, FiveMPlatformContext)
       ctx.bindSingleton(IEngineEvents as any, FiveMEngineEvents)
       ctx.bindSingleton(IExports as any, FiveMExports)
       ctx.bindSingleton(IResourceInfo as any, FiveMResourceInfo)
