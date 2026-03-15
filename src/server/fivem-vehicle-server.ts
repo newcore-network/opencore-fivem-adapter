@@ -1,5 +1,5 @@
 import { injectable } from 'tsyringe'
-import { IVehicleServer } from '@open-core/framework'
+import { IVehicleServer } from '@open-core/framework/contracts/server'
 
 /**
  * FiveM implementation of server-side vehicle operations.

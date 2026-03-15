@@ -1,15 +1,29 @@
+import type { InjectionToken } from 'tsyringe'
 import {
   defineClientAdapter,
+  IClientWebViewBridge,
+  PlatformBlipBridge,
+  PlatformMarkerBridge,
+  PlatformNotificationBridge,
   IClientLocalPlayerBridge,
   IClientRuntimeBridge,
   type OpenCoreClientAdapter,
 } from '@open-core/framework/client'
+import {
+  IClientBlipBridge,
+  IClientMarkerBridge,
+  IClientNotificationBridge,
+  IClientSpawnBridge,
+  IPedAppearanceClient,
+} from '@open-core/framework/contracts/client'
 import { FiveMMessagingTransport } from '../shared/transport/adapter'
 import { FiveMClientHasher } from './fivem-hasher'
 import { FiveMLocalPlayerBridge } from './fivem-local-player-bridge'
 import { FiveMPedAppearanceClientAdapter } from './fivem-ped-appearance-client'
+import { FiveMClientSpawnBridge } from './fivem-spawn-bridge'
 import { FiveMRuntimeBridge } from './fivem-runtime-bridge'
-import { IHasher, IPedAppearanceClient } from '@open-core/framework'
+import { FiveMClientWebViewBridge } from './fivem-webview-bridge'
+import { IHasher } from '@open-core/framework/contracts'
 
 /**
  * Creates the external FiveM client adapter.
@@ -19,10 +33,36 @@ export function FiveMClientAdapter(): OpenCoreClientAdapter {
     name: 'fivem',
     register(ctx) {
       ctx.bindMessagingTransport(new FiveMMessagingTransport())
-      ctx.bindSingleton(IPedAppearanceClient as any, FiveMPedAppearanceClientAdapter)
-      ctx.bindSingleton(IHasher as any, FiveMClientHasher)
-      ctx.bindSingleton(IClientRuntimeBridge as any, FiveMRuntimeBridge)
-      ctx.bindSingleton(IClientLocalPlayerBridge as any, FiveMLocalPlayerBridge)
+      ctx.bindSingleton(
+        IPedAppearanceClient as InjectionToken<IPedAppearanceClient>,
+        FiveMPedAppearanceClientAdapter,
+      )
+      ctx.bindSingleton(IHasher as InjectionToken<IHasher>, FiveMClientHasher)
+      ctx.bindSingleton(
+        IClientRuntimeBridge as InjectionToken<IClientRuntimeBridge>,
+        FiveMRuntimeBridge,
+      )
+      ctx.bindSingleton(
+        IClientLocalPlayerBridge as InjectionToken<IClientLocalPlayerBridge>,
+        FiveMLocalPlayerBridge,
+      )
+      ctx.bindSingleton(
+        IClientSpawnBridge as InjectionToken<IClientSpawnBridge>,
+        FiveMClientSpawnBridge,
+      )
+      ctx.bindSingleton(IClientBlipBridge as InjectionToken<IClientBlipBridge>, PlatformBlipBridge)
+      ctx.bindSingleton(
+        IClientMarkerBridge as InjectionToken<IClientMarkerBridge>,
+        PlatformMarkerBridge,
+      )
+      ctx.bindSingleton(
+        IClientNotificationBridge as InjectionToken<IClientNotificationBridge>,
+        PlatformNotificationBridge,
+      )
+      ctx.bindSingleton(
+        IClientWebViewBridge as InjectionToken<IClientWebViewBridge>,
+        FiveMClientWebViewBridge,
+      )
     },
   })
 }

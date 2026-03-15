@@ -1,5 +1,4 @@
-import { EventsAPI } from '@open-core/framework'
-import { RuntimeContext } from '@open-core/framework'
+import { EventsAPI, type RuntimeContext } from '@open-core/framework/contracts'
 
 function isPlayerTarget(value: unknown): value is { clientID: number } {
   return (

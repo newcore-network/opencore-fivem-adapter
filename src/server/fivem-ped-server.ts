@@ -1,5 +1,5 @@
 import { injectable } from 'tsyringe'
-import { IPedServer } from '@open-core/framework'
+import { IPedServer } from '@open-core/framework/contracts/server'
 
 /** FiveM implementation of server-side ped operations. */
 @injectable()

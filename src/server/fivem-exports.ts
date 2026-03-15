@@ -1,4 +1,4 @@
-import { IExports } from '@open-core/framework'
+import { IExports } from '@open-core/framework/contracts/server'
 
 export class FiveMExports extends IExports {
   register(exportName: string, handler: (...args: any[]) => any): void {

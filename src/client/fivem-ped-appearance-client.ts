@@ -1,4 +1,5 @@
-import { HeadBlendData, IPedAppearanceClient } from "@open-core/framework"
+import type { HeadBlendData } from '@open-core/framework/kernel'
+import { IPedAppearanceClient } from '@open-core/framework/contracts/client'
 
 /**
  * FiveM implementation of client-side ped appearance adapter.
