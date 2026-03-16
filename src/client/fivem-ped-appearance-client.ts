@@ -1,5 +1,5 @@
 import type { HeadBlendData } from '@open-core/framework/kernel'
-import { IPedAppearanceClient } from '@open-core/framework/contracts/client'
+import { IGtaPedAppearanceBridge } from '@open-core/framework/contracts/client'
 
 /**
  * FiveM implementation of client-side ped appearance adapter.
@@ -8,7 +8,7 @@ import { IPedAppearanceClient } from '@open-core/framework/contracts/client'
  * Wraps FiveM natives for ped appearance manipulation.
  * All natives are client-side only.
  */
-export class FiveMPedAppearanceClientAdapter extends IPedAppearanceClient {
+export class FiveMPedAppearanceClientAdapter extends IGtaPedAppearanceBridge {
   setComponentVariation(
     ped: number,
     componentId: number,
