@@ -2,8 +2,6 @@ import type { InjectionToken } from 'tsyringe'
 import {
   defineClientAdapter,
   IClientWebViewBridge,
-  PlatformBlipBridge,
-  PlatformMarkerBridge,
   PlatformNotificationBridge,
   IClientLocalPlayerBridge,
   IClientRuntimeBridge,
@@ -18,7 +16,9 @@ import {
 } from '@open-core/framework/contracts/client'
 import { FiveMMessagingTransport } from '../shared/transport/adapter'
 import { FiveMClientHasher } from './fivem-hasher'
+import { FiveMClientBlipBridge } from './fivem-blip-bridge'
 import { FiveMLocalPlayerBridge } from './fivem-local-player-bridge'
+import { FiveMClientMarkerBridge } from './fivem-marker-bridge'
 import { FiveMPedAppearanceClientAdapter } from './fivem-ped-appearance-client'
 import { FiveMClientSpawnBridge } from './fivem-spawn-bridge'
 import { FiveMRuntimeBridge } from './fivem-runtime-bridge'
@@ -50,10 +50,10 @@ export function FiveMClientAdapter(): OpenCoreClientAdapter {
         IClientSpawnBridge as InjectionToken<IClientSpawnBridge>,
         FiveMClientSpawnBridge,
       )
-      ctx.bindSingleton(IClientBlipBridge as InjectionToken<IClientBlipBridge>, PlatformBlipBridge)
+      ctx.bindSingleton(IClientBlipBridge as InjectionToken<IClientBlipBridge>, FiveMClientBlipBridge)
       ctx.bindSingleton(
         IClientMarkerBridge as InjectionToken<IClientMarkerBridge>,
-        PlatformMarkerBridge,
+        FiveMClientMarkerBridge,
       )
       ctx.bindSingleton(
         IClientNotificationBridge as InjectionToken<IClientNotificationBridge>,
