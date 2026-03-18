@@ -24,7 +24,7 @@
   "license": "MPL-2.0",
   "packageManager": "pnpm@10.13.1",
   "dependencies": {
-    "@open-core/framework": "file:../opencore-framework"
+    "@open-core/framework": "1.0.5-beta.2"
   },
   "peerDependencies": {
     "reflect-metadata": "^0.2.2",
