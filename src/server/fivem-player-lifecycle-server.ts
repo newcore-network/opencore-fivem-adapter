@@ -1,6 +1,5 @@
 import { inject, injectable } from 'tsyringe'
 import { EventsAPI } from '@open-core/framework/contracts'
-import { Players } from '@open-core/framework/server'
 import {
   IPlayerLifecycleServer,
   type RespawnPlayerRequest,
@@ -10,10 +9,7 @@ import {
 
 @injectable()
 export class FiveMPlayerLifecycleServer extends IPlayerLifecycleServer {
-  constructor(
-    @inject(EventsAPI as any) private readonly events: EventsAPI<'server'>,
-    @inject(Players as any) private readonly players: Players,
-  ) {
+  constructor(@inject(EventsAPI as any) private readonly events: EventsAPI<'server'>) {
     super()
   }
 
@@ -42,6 +38,7 @@ export class FiveMPlayerLifecycleServer extends IPlayerLifecycleServer {
   }
 
   private resolveTarget(playerSrc: string) {
-    return this.players.getByClient(Number(playerSrc))
+    const clientId = Number(playerSrc)
+    return Number.isFinite(clientId) && clientId > 0 ? clientId : undefined
   }
 }

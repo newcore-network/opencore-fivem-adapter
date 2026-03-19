@@ -1,7 +1,8 @@
 import { inject, injectable } from 'tsyringe'
 import {
-  IClientSpawnBridge,
+  IClientSpawnPort,
   type RespawnRequest,
+  type SpawnExecutionResult,
   type SpawnRequest,
   type TeleportRequest,
 } from '@open-core/framework/contracts/client'
@@ -15,7 +16,7 @@ const SCREEN_FADE_TIMEOUT_MS = 2_000
 const MODEL_LOAD_TIMEOUT_MS = 10_000
 
 @injectable()
-export class FiveMClientSpawnBridge extends IClientSpawnBridge {
+export class FiveMClientSpawnBridge extends IClientSpawnPort {
   constructor(
     @inject(IClientPlatformBridge as any) private readonly platform: IClientPlatformBridge,
     @inject(IClientRuntimeBridge as any) private readonly runtime: IClientRuntimeBridge,
@@ -33,7 +34,7 @@ export class FiveMClientSpawnBridge extends IClientSpawnBridge {
     }
   }
 
-  async spawn(request: SpawnRequest): Promise<void> {
+  async spawn(request: SpawnRequest): Promise<SpawnExecutionResult> {
     await this.fadeOutIfSupported()
     this.closeLoadingScreens()
     await this.setPlayerModel(request.model)
@@ -46,9 +47,10 @@ export class FiveMClientSpawnBridge extends IClientSpawnBridge {
     await this.setupPedForGameplay(finalPed)
     await this.placePed(finalPed, request.position, request.heading ?? 0)
     this.fadeInIfSupported()
+    return { localPlayerHandle: finalPed }
   }
 
-  async respawn(request: RespawnRequest): Promise<void> {
+  async respawn(request: RespawnRequest): Promise<SpawnExecutionResult> {
     const ped = await this.ensurePed()
     await this.ensureCollisionAt(request.position, ped)
     this.platform.clearPedTasksImmediately(ped)
@@ -57,6 +59,7 @@ export class FiveMClientSpawnBridge extends IClientSpawnBridge {
     const finalPed = await this.ensurePed()
     await this.setupPedForGameplay(finalPed)
     await this.placePed(finalPed, request.position, request.heading ?? 0)
+    return { localPlayerHandle: finalPed }
   }
 
   async teleport(request: TeleportRequest): Promise<void> {
