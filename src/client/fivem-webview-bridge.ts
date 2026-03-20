@@ -15,6 +15,7 @@ const FIVEM_WEBVIEW_CAPABILITIES: WebViewCapabilities = {
   supportsBidirectionalMessaging: true,
   supportsExecute: false,
   supportsHeadless: false,
+  supportsChatMode: false,
 }
 
 @injectable()
@@ -59,6 +60,7 @@ export class FiveMClientWebViewBridge extends IClientWebViewBridge {
     this.runtime.setWebViewInputPassthrough(false)
     this.runtime.setWebViewFocus(false, false)
   }
+  markAsChat(_viewId: string): void {}
   send(viewId: string, event: string, payload: unknown): void {
     this.runtime.sendWebViewMessage(JSON.stringify({
       __opencoreWebView: true,
