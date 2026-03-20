@@ -12,8 +12,11 @@ import {
   IClientCameraPort,
   IClientMarkerBridge,
   IClientNotificationBridge,
+  IClientPedPort,
+  IClientProgressPort,
   IClientSpawnBridge,
   IClientSpawnPort,
+  IClientVehiclePort,
   IGtaPedAppearanceBridge,
 } from '@open-core/framework/contracts/client'
 import { FiveMMessagingTransport } from '../shared/transport/adapter'
@@ -23,9 +26,12 @@ import { FiveMClientCameraPort } from './fivem-camera-port'
 import { FiveMLocalPlayerBridge } from './fivem-local-player-bridge'
 import { FiveMClientMarkerBridge } from './fivem-marker-bridge'
 import { FiveMClientNotificationBridge } from './fivem-notification-bridge'
+import { FiveMClientPedPort } from './fivem-ped-port'
+import { FiveMClientProgressPort } from './fivem-progress-port'
 import { FiveMClientPlatformBridge } from './fivem-platform-bridge'
 import { FiveMPedAppearanceClientAdapter } from './fivem-ped-appearance-client'
 import { FiveMClientSpawnBridge } from './fivem-spawn-bridge'
+import { FiveMClientVehiclePort } from './fivem-vehicle-port'
 import { FiveMRuntimeBridge } from './fivem-runtime-bridge'
 import { FiveMClientWebViewBridge } from './fivem-webview-bridge'
 import { IHasher } from '@open-core/framework/contracts'
@@ -56,10 +62,13 @@ export function FiveMClientAdapter(): OpenCoreClientAdapter {
         FiveMClientPlatformBridge,
       )
       ctx.bindSingleton(IClientCameraPort as InjectionToken<IClientCameraPort>, FiveMClientCameraPort)
+      ctx.bindSingleton(IClientPedPort as InjectionToken<IClientPedPort>, FiveMClientPedPort)
+      ctx.bindSingleton(IClientProgressPort as InjectionToken<IClientProgressPort>, FiveMClientProgressPort)
       ctx.bindSingleton(
         IClientSpawnPort as InjectionToken<IClientSpawnPort>,
         FiveMClientSpawnBridge,
       )
+      ctx.bindSingleton(IClientVehiclePort as InjectionToken<IClientVehiclePort>, FiveMClientVehiclePort)
       ctx.bindFactory(IClientSpawnBridge as InjectionToken<IClientSpawnBridge>, () =>
         ctx.container.resolve(IClientSpawnPort as InjectionToken<IClientSpawnPort>),
       )

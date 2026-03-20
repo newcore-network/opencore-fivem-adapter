@@ -45,6 +45,8 @@ export class FiveMClientMarkerBridge extends IClientMarkerBridge {
     const rotation = definition.rotation ?? { x: 0, y: 0, z: 0 }
     const size = definition.size ?? definition.scale ?? { x: 1, y: 1, z: 1 }
     const color = definition.color ?? { r: 255, g: 0, b: 0, a: 200 }
+    const textureDict = undefined as unknown as string
+    const textureName = undefined as unknown as string
 
     DrawMarker(
       definition.variant ?? definition.type ?? 1,
@@ -68,8 +70,8 @@ export class FiveMClientMarkerBridge extends IClientMarkerBridge {
       definition.faceCamera ?? false,
       2,
       definition.rotate ?? false,
-      '',
-      '',
+      textureDict,
+      textureName,
       definition.drawOnEnts ?? false,
     )
   }

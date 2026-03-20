@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe'
 import { IPlatformContext } from '@open-core/framework/contracts/server'
 import { IPlayerServer, IVehicleLifecycleServer, IVehicleServer } from '@open-core/framework/contracts/server'
+import { EventsAPI } from '@open-core/framework/contracts'
 import type {
   CreateVehicleServerRequest,
   CreateVehicleServerResult,
@@ -13,6 +14,7 @@ export class FiveMVehicleLifecycleServer extends IVehicleLifecycleServer {
     @inject(IVehicleServer as any) private readonly vehicleServer: IVehicleServer,
     @inject(IPlatformContext as any) private readonly platformContext: IPlatformContext,
     @inject(IPlayerServer as any) private readonly playerServer: IPlayerServer,
+    @inject(EventsAPI as any) private readonly events: EventsAPI<'server'>,
   ) {
     super()
   }
@@ -44,9 +46,13 @@ export class FiveMVehicleLifecycleServer extends IVehicleLifecycleServer {
   }
 
   warpPlayerIntoVehicle(request: WarpPlayerIntoVehicleRequest): void {
-    const ped = this.playerServer.getPed(request.playerSrc)
+    const clientId = Number(request.playerSrc)
+    if (Number.isNaN(clientId)) return
+
     const vehicle = this.vehicleServer.getEntityFromNetworkId(request.networkId)
-    if (!ped || !vehicle) return
-    SetPedIntoVehicle(ped, vehicle, request.seatIndex)
+    const ped = this.playerServer.getPed(request.playerSrc)
+    if (!vehicle || !ped) return
+
+    this.events.emit('opencore:vehicle:warpInto', clientId, request.networkId, request.seatIndex)
   }
 }
