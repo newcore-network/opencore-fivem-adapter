@@ -1,4 +1,4 @@
-import { inject, injectable } from 'tsyringe'
+import { inject, injectable, type InjectionToken } from 'tsyringe'
 import { EventsAPI } from '@open-core/framework/contracts'
 import {
   IPlayerLifecycleServer,
@@ -9,7 +9,7 @@ import {
 
 @injectable()
 export class FiveMPlayerLifecycleServer extends IPlayerLifecycleServer {
-  constructor(@inject(EventsAPI as any) private readonly events: EventsAPI<'server'>) {
+  constructor(@inject(EventsAPI as InjectionToken<EventsAPI<'server'>>) private readonly events: EventsAPI<'server'>) {
     super()
   }
 

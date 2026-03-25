@@ -15,15 +15,15 @@ export class FiveMRuntimeBridge extends IClientRuntimeBridge {
     return 'default'
   }
 
-  on(eventName: string, handler: (...args: any[]) => void | Promise<void>): void {
-    on(eventName, (...args: any[]) => {
+  on(eventName: string, handler: (...args: unknown[]) => void | Promise<void>): void {
+    on(eventName, (...args: unknown[]) => {
       void handler(...args)
     })
   }
 
   registerCommand(
     commandName: string,
-    handler: (...args: any[]) => void,
+    handler: (...args: unknown[]) => void,
     restricted: boolean,
   ): void {
     RegisterCommand(commandName, handler, restricted)
@@ -52,10 +52,10 @@ export class FiveMRuntimeBridge extends IClientRuntimeBridge {
 
   registerNuiCallback(
     eventName: string,
-    handler: (data: any, cb: (response: unknown) => void) => void | Promise<void>,
+    handler: (data: unknown, cb: (response: unknown) => void) => void | Promise<void>,
   ): void {
     RegisterNuiCallbackType(eventName)
-    on(`__cfx_nui:${eventName}`, (data: any, cb: (response: unknown) => void) => {
+    on(`__cfx_nui:${eventName}`, (data: unknown, cb: (response: unknown) => void) => {
       void handler(data, cb)
     })
   }
@@ -72,7 +72,7 @@ export class FiveMRuntimeBridge extends IClientRuntimeBridge {
     SetNuiFocusKeepInput(keepInput)
   }
 
-  registerExport(exportName: string, handler: (...args: any[]) => any): void {
+  registerExport(exportName: string, handler: (...args: unknown[]) => unknown): void {
     exports(exportName, handler)
   }
 }

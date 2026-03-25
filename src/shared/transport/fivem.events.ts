@@ -14,14 +14,14 @@ export class FiveMEvents extends EventsAPI<RuntimeContext> {
     super()
   }
 
-  on(event: string, handler: any) {
-    onNet(event, (...args: any) => {
-      const sourceId = this.context === 'server' ? global.source : undefined
+  on(event: string, handler: (ctx: { clientId?: number; raw?: unknown }, ...args: unknown[]) => void): void {
+    onNet(event, (...args: unknown[]) => {
+      const sourceId = this.context === 'server' ? source : undefined
       handler({ clientId: sourceId, raw: sourceId }, ...args)
     })
   }
 
-  emit(event: string, ...args: any[]): void {
+  emit(event: string, ...args: unknown[]): void {
     if (this.context !== 'server') {
       emitNet(event, ...args)
       return
@@ -41,6 +41,8 @@ export class FiveMEvents extends EventsAPI<RuntimeContext> {
       send(target.clientID)
       return
     }
-    send(target)
+    if (typeof target === 'number') {
+      send(target)
+    }
   }
 }

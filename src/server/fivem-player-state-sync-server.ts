@@ -1,4 +1,4 @@
-import { inject, injectable } from 'tsyringe'
+import { inject, injectable, type InjectionToken } from 'tsyringe'
 import {
   IEntityServer,
   IPlayerServer,
@@ -8,8 +8,10 @@ import {
 @injectable()
 export class FiveMPlayerStateSyncServer extends IPlayerStateSyncServer {
   constructor(
-    @inject(IPlayerServer as any) private readonly playerServer: IPlayerServer,
-    @inject(IEntityServer as any) private readonly entityServer: IEntityServer,
+    @inject(IPlayerServer as InjectionToken<IPlayerServer>)
+    private readonly playerServer: IPlayerServer,
+    @inject(IEntityServer as InjectionToken<IEntityServer>)
+    private readonly entityServer: IEntityServer,
   ) {
     super()
   }

@@ -1,4 +1,4 @@
-import { inject, injectable } from 'tsyringe'
+import { inject, injectable, type InjectionToken } from 'tsyringe'
 import { IClientRuntimeBridge } from '@open-core/framework/client'
 import { IClientWebViewBridge } from '@open-core/framework/contracts/client'
 import type {
@@ -24,7 +24,10 @@ export class FiveMClientWebViewBridge extends IClientWebViewBridge {
   private readonly handlers = new Set<(message: WebViewMessage) => void | Promise<void>>()
   private callbacksRegistered = false
 
-  constructor(@inject(IClientRuntimeBridge as any) private readonly runtime: IClientRuntimeBridge) {
+  constructor(
+    @inject(IClientRuntimeBridge as InjectionToken<IClientRuntimeBridge>)
+    private readonly runtime: IClientRuntimeBridge,
+  ) {
     super()
   }
 

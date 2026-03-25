@@ -1,12 +1,11 @@
 import { IExports } from '@open-core/framework/contracts/server'
 
 export class FiveMExports extends IExports {
-  register(exportName: string, handler: (...args: any[]) => any): void {
+  register(exportName: string, handler: (...args: unknown[]) => unknown): void {
     exports(exportName, handler)
   }
 
-  getResource<T = any>(resourceName: string): T | undefined {
-    // biome-ignore lint/suspicious/noExplicitAny: exports collision
-    return (globalThis as any).exports?.[resourceName] as T | undefined
+  getResource<T = unknown>(resourceName: string): T | undefined {
+    return exports[resourceName] as unknown as T | undefined
   }
 }

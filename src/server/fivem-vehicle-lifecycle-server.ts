@@ -1,4 +1,4 @@
-import { inject, injectable } from 'tsyringe'
+import { inject, injectable, type InjectionToken } from 'tsyringe'
 import { IPlatformContext } from '@open-core/framework/contracts/server'
 import {
   IPlayerServer,
@@ -15,10 +15,14 @@ import type {
 @injectable()
 export class FiveMVehicleLifecycleServer extends IVehicleLifecycleServer {
   constructor(
-    @inject(IVehicleServer as any) private readonly vehicleServer: IVehicleServer,
-    @inject(IPlatformContext as any) private readonly platformContext: IPlatformContext,
-    @inject(IPlayerServer as any) private readonly playerServer: IPlayerServer,
-    @inject(EventsAPI as any) private readonly events: EventsAPI<'server'>,
+    @inject(IVehicleServer as InjectionToken<IVehicleServer>)
+    private readonly vehicleServer: IVehicleServer,
+    @inject(IPlatformContext as InjectionToken<IPlatformContext>)
+    private readonly platformContext: IPlatformContext,
+    @inject(IPlayerServer as InjectionToken<IPlayerServer>)
+    private readonly playerServer: IPlayerServer,
+    @inject(EventsAPI as InjectionToken<EventsAPI<'server'>>)
+    private readonly events: EventsAPI<'server'>,
   ) {
     super()
   }

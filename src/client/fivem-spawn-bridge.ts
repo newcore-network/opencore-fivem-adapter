@@ -1,4 +1,4 @@
-import { inject, injectable } from 'tsyringe'
+import { inject, injectable, type InjectionToken } from 'tsyringe'
 import {
   IClientSpawnPort,
   type RespawnRequest,
@@ -18,8 +18,10 @@ const MODEL_LOAD_TIMEOUT_MS = 10_000
 @injectable()
 export class FiveMClientSpawnBridge extends IClientSpawnPort {
   constructor(
-    @inject(IClientPlatformBridge as any) private readonly platform: IClientPlatformBridge,
-    @inject(IClientRuntimeBridge as any) private readonly runtime: IClientRuntimeBridge,
+    @inject(IClientPlatformBridge as InjectionToken<IClientPlatformBridge>)
+    private readonly platform: IClientPlatformBridge,
+    @inject(IClientRuntimeBridge as InjectionToken<IClientRuntimeBridge>)
+    private readonly runtime: IClientRuntimeBridge,
   ) {
     super()
   }

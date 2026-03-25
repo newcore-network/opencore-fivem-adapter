@@ -1,4 +1,4 @@
-import { inject, injectable } from 'tsyringe'
+import { inject, injectable, type InjectionToken } from 'tsyringe'
 import {
   type ClientVehicleMods,
   type ClientVehicleSpawnOptions,
@@ -10,7 +10,8 @@ import type { Vector3 } from '@open-core/framework/kernel'
 @injectable()
 export class FiveMClientVehiclePort extends IClientVehiclePort {
   constructor(
-    @inject(IClientLocalPlayerBridge as any) private readonly localPlayer: IClientLocalPlayerBridge,
+    @inject(IClientLocalPlayerBridge as InjectionToken<IClientLocalPlayerBridge>)
+    private readonly localPlayer: IClientLocalPlayerBridge,
   ) {
     super()
   }

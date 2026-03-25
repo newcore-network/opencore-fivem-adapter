@@ -5,10 +5,10 @@ import {
 } from '@open-core/framework/contracts/server'
 
 export class FiveMEngineEvents extends IEngineEvents {
-  override onRuntime(eventName: RuntimeEventName, handler?: (...args: any[]) => void): void {
+  override onRuntime(eventName: RuntimeEventName, handler?: (...args: unknown[]) => void): void {
     if (!handler) return
 
-    on(eventName, (...args: any[]) => {
+    on(eventName, (...args: unknown[]) => {
       if (eventName === RUNTIME_EVENTS.playerJoining) {
         const clientId = Number(source)
         const license = GetPlayerIdentifier(clientId.toString(), 0) ?? undefined
@@ -26,12 +26,12 @@ export class FiveMEngineEvents extends IEngineEvents {
     })
   }
 
-  on(eventName: string, handler?: (...args: any[]) => void): void {
+  on(eventName: string, handler?: (...args: unknown[]) => void): void {
     if (!handler) return
-    on(eventName, (...args: any[]) => handler(...args))
+    on(eventName, (...args: unknown[]) => handler(...args))
   }
 
-  emit(eventName: string, ...args: any[]): void {
+  emit(eventName: string, ...args: unknown[]): void {
     emit(eventName, ...args)
   }
 }
