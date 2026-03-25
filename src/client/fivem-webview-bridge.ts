@@ -28,7 +28,9 @@ export class FiveMClientWebViewBridge extends IClientWebViewBridge {
     super()
   }
 
-  getCapabilities(): WebViewCapabilities { return FIVEM_WEBVIEW_CAPABILITIES }
+  getCapabilities(): WebViewCapabilities {
+    return FIVEM_WEBVIEW_CAPABILITIES
+  }
 
   create(definition: WebViewDefinition): void {
     this.views.set(definition.id, definition)
@@ -49,9 +51,15 @@ export class FiveMClientWebViewBridge extends IClientWebViewBridge {
     this.views.delete(viewId)
   }
 
-  exists(viewId: string): boolean { return this.views.has(viewId) }
-  show(viewId: string): void { this.sendSystem('show', viewId) }
-  hide(viewId: string): void { this.sendSystem('hide', viewId) }
+  exists(viewId: string): boolean {
+    return this.views.has(viewId)
+  }
+  show(viewId: string): void {
+    this.sendSystem('show', viewId)
+  }
+  hide(viewId: string): void {
+    this.sendSystem('hide', viewId)
+  }
   focus(_viewId: string, options: WebViewFocusOptions = {}): void {
     this.runtime.setWebViewFocus(true, options.cursor ?? true)
     this.runtime.setWebViewInputPassthrough(options.inputPassthrough ?? false)
@@ -62,12 +70,14 @@ export class FiveMClientWebViewBridge extends IClientWebViewBridge {
   }
   markAsChat(_viewId: string): void {}
   send(viewId: string, event: string, payload: unknown): void {
-    this.runtime.sendWebViewMessage(JSON.stringify({
-      __opencoreWebView: true,
-      viewId,
-      action: event,
-      data: payload,
-    }))
+    this.runtime.sendWebViewMessage(
+      JSON.stringify({
+        __opencoreWebView: true,
+        viewId,
+        action: event,
+        data: payload,
+      }),
+    )
   }
 
   onMessage(handler: (message: WebViewMessage) => void | Promise<void>): () => void {
@@ -79,21 +89,26 @@ export class FiveMClientWebViewBridge extends IClientWebViewBridge {
   private ensureCallbacksRegistered(): void {
     if (this.callbacksRegistered) return
     this.callbacksRegistered = true
-    this.runtime.registerWebViewCallback('__opencore:webview:message', async (data: unknown, cb) => {
-      const message = data as WebViewMessage
-      for (const handler of this.handlers) {
-        await handler(message)
-      }
-      cb({ ok: true })
-    })
+    this.runtime.registerWebViewCallback(
+      '__opencore:webview:message',
+      async (data: unknown, cb) => {
+        const message = data as WebViewMessage
+        for (const handler of this.handlers) {
+          await handler(message)
+        }
+        cb({ ok: true })
+      },
+    )
   }
 
   private sendSystem(type: string, viewId: string, payload?: unknown): void {
-    this.runtime.sendWebViewMessage(JSON.stringify({
-      __opencoreWebView: true,
-      type,
-      viewId,
-      payload,
-    }))
+    this.runtime.sendWebViewMessage(
+      JSON.stringify({
+        __opencoreWebView: true,
+        type,
+        viewId,
+        payload,
+      }),
+    )
   }
 }

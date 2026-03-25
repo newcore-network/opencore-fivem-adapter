@@ -70,7 +70,13 @@ export class FiveMClientCameraPort extends IClientCameraPort {
     easeLocation = true,
     easeRotation = true,
   ): void {
-    SetCamActiveWithInterp(toCamera, fromCamera, durationMs, easeLocation ? 1 : 0, easeRotation ? 1 : 0)
+    SetCamActiveWithInterp(
+      toCamera,
+      fromCamera,
+      durationMs,
+      easeLocation ? 1 : 0,
+      easeRotation ? 1 : 0,
+    )
   }
 
   shake(camera: number, options: ClientCameraShakeOptions): void {

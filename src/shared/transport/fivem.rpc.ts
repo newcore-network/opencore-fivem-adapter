@@ -45,7 +45,7 @@ type PendingEntry<TResult> = {
 }
 
 function getCurrentResourceNameSafe(): string {
-  const fn = (globalThis as any).GetCurrentResourceName
+  const fn = GetCurrentResourceName
   if (typeof fn === 'function') {
     const name = fn()
     if (typeof name === 'string' && name.trim()) return name
@@ -86,7 +86,7 @@ export class FiveMRpc<C extends RuntimeContext = RuntimeContext> extends RpcAPI<
       ...args: TArgs
     ) => TResult | Promise<TResult>,
   ): void {
-    this.handlers.set(name, handler as any)
+    this.handlers.set(name, handler)
   }
 
   call<TResult = unknown>(name: string, ...args: any[]): Promise<TResult> {

@@ -9,7 +9,9 @@ import type { Vector3 } from '@open-core/framework/kernel'
 
 @injectable()
 export class FiveMClientVehiclePort extends IClientVehiclePort {
-  constructor(@inject(IClientLocalPlayerBridge as any) private readonly localPlayer: IClientLocalPlayerBridge) {
+  constructor(
+    @inject(IClientLocalPlayerBridge as any) private readonly localPlayer: IClientLocalPlayerBridge,
+  ) {
     super()
   }
 
@@ -37,7 +39,15 @@ export class FiveMClientVehiclePort extends IClientVehiclePort {
       await new Promise((r) => setTimeout(r, 0))
     }
 
-    const vehicle = CreateVehicle(modelHash, position.x, position.y, position.z, heading, networked, false)
+    const vehicle = CreateVehicle(
+      modelHash,
+      position.x,
+      position.y,
+      position.z,
+      heading,
+      networked,
+      false,
+    )
     SetModelAsNoLongerNeeded(modelHash)
     if (!vehicle || vehicle === 0) throw new Error('Failed to create vehicle')
 
@@ -155,7 +165,11 @@ export class FiveMClientVehiclePort extends IClientVehiclePort {
     }
     if (mods.pearlescentColor !== undefined || mods.wheelColor !== undefined) {
       const [currentPearl, currentWheel] = GetVehicleExtraColours(vehicle)
-      SetVehicleExtraColours(vehicle, mods.pearlescentColor ?? currentPearl, mods.wheelColor ?? currentWheel)
+      SetVehicleExtraColours(
+        vehicle,
+        mods.pearlescentColor ?? currentPearl,
+        mods.wheelColor ?? currentWheel,
+      )
     }
   }
 

@@ -7,7 +7,7 @@ import { IClientRuntimeBridge } from '@open-core/framework/client'
 @injectable()
 export class FiveMRuntimeBridge extends IClientRuntimeBridge {
   getCurrentResourceName(): string {
-    const fn = (globalThis as any).GetCurrentResourceName
+    const fn = GetCurrentResourceName
     if (typeof fn === 'function') {
       const name = fn()
       if (typeof name === 'string' && name.trim()) return name
@@ -21,25 +21,39 @@ export class FiveMRuntimeBridge extends IClientRuntimeBridge {
     })
   }
 
-  registerCommand(commandName: string, handler: (...args: any[]) => void, restricted: boolean): void {
+  registerCommand(
+    commandName: string,
+    handler: (...args: any[]) => void,
+    restricted: boolean,
+  ): void {
     RegisterCommand(commandName, handler, restricted)
   }
 
-  registerKeyMapping(commandName: string, description: string, inputMapper: string, key: string): void {
+  registerKeyMapping(
+    commandName: string,
+    description: string,
+    inputMapper: string,
+    key: string,
+  ): void {
     RegisterKeyMapping(commandName, description, inputMapper, key)
   }
 
   setTick(handler: () => void | Promise<void>): unknown {
-    return setTick(() => { void handler() })
+    return setTick(() => {
+      void handler()
+    })
   }
 
-  clearTick(_handle: unknown): void { }
+  clearTick(_handle: unknown): void {}
 
   getGameTimer(): number {
     return GetGameTimer()
   }
 
-  registerNuiCallback(eventName: string, handler: (data: any, cb: (response: unknown) => void) => void | Promise<void>): void {
+  registerNuiCallback(
+    eventName: string,
+    handler: (data: any, cb: (response: unknown) => void) => void | Promise<void>,
+  ): void {
     RegisterNuiCallbackType(eventName)
     on(`__cfx_nui:${eventName}`, (data: any, cb: (response: unknown) => void) => {
       void handler(data, cb)

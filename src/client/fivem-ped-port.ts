@@ -9,7 +9,9 @@ import type { Vector3 } from '@open-core/framework/kernel'
 
 @injectable()
 export class FiveMClientPedPort extends IClientPedPort {
-  constructor(@inject(IClientLocalPlayerBridge as any) private readonly localPlayer: IClientLocalPlayerBridge) {
+  constructor(
+    @inject(IClientLocalPlayerBridge as any) private readonly localPlayer: IClientLocalPlayerBridge,
+  ) {
     super()
   }
 
@@ -34,7 +36,16 @@ export class FiveMClientPedPort extends IClientPedPort {
       await new Promise((r) => setTimeout(r, 0))
     }
 
-    const ped = CreatePed(4, modelHash, position.x, position.y, position.z, heading, networked, true)
+    const ped = CreatePed(
+      4,
+      modelHash,
+      position.x,
+      position.y,
+      position.z,
+      heading,
+      networked,
+      true,
+    )
     SetModelAsNoLongerNeeded(modelHash)
     if (!ped || ped === 0) throw new Error('Failed to create ped')
 
@@ -75,18 +86,38 @@ export class FiveMClientPedPort extends IClientPedPort {
     )
   }
 
-  stopAnimation(handle: number): void { if (this.exists(handle)) ClearPedTasks(handle) }
-  stopAnimationImmediately(handle: number): void { if (this.exists(handle)) ClearPedTasksImmediately(handle) }
-  freeze(handle: number, freeze: boolean): void { if (this.exists(handle)) FreezeEntityPosition(handle, freeze) }
-  setInvincible(handle: number, invincible: boolean): void { if (this.exists(handle)) SetEntityInvincible(handle, invincible) }
+  stopAnimation(handle: number): void {
+    if (this.exists(handle)) ClearPedTasks(handle)
+  }
+  stopAnimationImmediately(handle: number): void {
+    if (this.exists(handle)) ClearPedTasksImmediately(handle)
+  }
+  freeze(handle: number, freeze: boolean): void {
+    if (this.exists(handle)) FreezeEntityPosition(handle, freeze)
+  }
+  setInvincible(handle: number, invincible: boolean): void {
+    if (this.exists(handle)) SetEntityInvincible(handle, invincible)
+  }
   giveWeapon(handle: number, weapon: string, ammo = 100, hidden = false, forceInHand = true): void {
     if (!this.exists(handle)) return
     GiveWeaponToPed(handle, GetHashKey(weapon), ammo, hidden, forceInHand)
   }
-  removeAllWeapons(handle: number): void { if (this.exists(handle)) RemoveAllPedWeapons(handle, true) }
+  removeAllWeapons(handle: number): void {
+    if (this.exists(handle)) RemoveAllPedWeapons(handle, true)
+  }
   getClosest(radius = 10, excludeLocalPlayer = true): number | null {
     const origin = this.localPlayer.getPosition()
-    const [found, handle] = GetClosestPed(origin.x, origin.y, origin.z, radius, true, true, true, false, -1)
+    const [found, handle] = GetClosestPed(
+      origin.x,
+      origin.y,
+      origin.z,
+      radius,
+      true,
+      true,
+      true,
+      false,
+      -1,
+    )
     if (!found || !handle) return null
     if (!handle) return null
     if (excludeLocalPlayer && handle === this.localPlayer.getHandle()) return null
@@ -104,9 +135,17 @@ export class FiveMClientPedPort extends IClientPedPort {
     }
     return results
   }
-  lookAtEntity(handle: number, entity: number, duration = -1): void { if (this.exists(handle)) TaskLookAtEntity(handle, entity, duration, 2048, 3) }
-  lookAtCoords(handle: number, position: Vector3, duration = -1): void { if (this.exists(handle)) TaskLookAtCoord(handle, position.x, position.y, position.z, duration, 2048, 3) }
-  walkTo(handle: number, position: Vector3, speed = 1): void { if (this.exists(handle)) TaskGoStraightToCoord(handle, position.x, position.y, position.z, speed, -1, 0, 0) }
+  lookAtEntity(handle: number, entity: number, duration = -1): void {
+    if (this.exists(handle)) TaskLookAtEntity(handle, entity, duration, 2048, 3)
+  }
+  lookAtCoords(handle: number, position: Vector3, duration = -1): void {
+    if (this.exists(handle))
+      TaskLookAtCoord(handle, position.x, position.y, position.z, duration, 2048, 3)
+  }
+  walkTo(handle: number, position: Vector3, speed = 1): void {
+    if (this.exists(handle))
+      TaskGoStraightToCoord(handle, position.x, position.y, position.z, speed, -1, 0, 0)
+  }
   setCombatAttributes(handle: number, canFight: boolean, canUseCover = true): void {
     if (!this.exists(handle)) return
     SetPedCombatAttributes(handle, 46, canFight)

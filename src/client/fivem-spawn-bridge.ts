@@ -65,7 +65,11 @@ export class FiveMClientSpawnBridge extends IClientSpawnPort {
   async teleport(request: TeleportRequest): Promise<void> {
     const ped = await this.ensurePed()
     await this.ensureCollisionAt(request.position, ped)
-    await this.placePed(ped, request.position, request.heading ?? this.platform.getEntityHeading(ped))
+    await this.placePed(
+      ped,
+      request.position,
+      request.heading ?? this.platform.getEntityHeading(ped),
+    )
   }
 
   private async fadeOutIfSupported(): Promise<void> {
@@ -85,8 +89,12 @@ export class FiveMClientSpawnBridge extends IClientSpawnPort {
   }
 
   private closeLoadingScreens(): void {
-    try { this.platform.shutdownLoadingScreen() } catch {}
-    try { this.platform.shutdownLoadingScreenNui() } catch {}
+    try {
+      this.platform.shutdownLoadingScreen()
+    } catch {}
+    try {
+      this.platform.shutdownLoadingScreenNui()
+    } catch {}
   }
 
   private async setPlayerModel(model: string): Promise<void> {
@@ -121,7 +129,10 @@ export class FiveMClientSpawnBridge extends IClientSpawnPort {
     return ped
   }
 
-  private async ensureCollisionAt(position: TeleportRequest['position'], ped: number): Promise<void> {
+  private async ensureCollisionAt(
+    position: TeleportRequest['position'],
+    ped: number,
+  ): Promise<void> {
     this.platform.requestCollisionAtCoord(position)
     const started = this.runtime.getGameTimer()
     while (!this.platform.hasCollisionLoadedAroundEntity(ped)) {
@@ -142,7 +153,11 @@ export class FiveMClientSpawnBridge extends IClientSpawnPort {
     this.platform.setEntityInvincible(ped, false)
   }
 
-  private async placePed(ped: number, position: TeleportRequest['position'], heading: number): Promise<void> {
+  private async placePed(
+    ped: number,
+    position: TeleportRequest['position'],
+    heading: number,
+  ): Promise<void> {
     this.platform.freezeEntityPosition(ped, true)
     this.platform.setEntityCoordsNoOffset(ped, position)
     this.platform.setEntityHeading(ped, heading)

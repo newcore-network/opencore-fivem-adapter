@@ -10,7 +10,6 @@
     "noImplicitAny": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "baseUrl": ".",
     "types": ["@citizenfx/server", "@citizenfx/client", "@types/node"],
     "noEmit": true
   },

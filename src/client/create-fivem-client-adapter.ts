@@ -61,18 +61,30 @@ export function FiveMClientAdapter(): OpenCoreClientAdapter {
         IClientPlatformBridge as InjectionToken<IClientPlatformBridge>,
         FiveMClientPlatformBridge,
       )
-      ctx.bindSingleton(IClientCameraPort as InjectionToken<IClientCameraPort>, FiveMClientCameraPort)
+      ctx.bindSingleton(
+        IClientCameraPort as InjectionToken<IClientCameraPort>,
+        FiveMClientCameraPort,
+      )
       ctx.bindSingleton(IClientPedPort as InjectionToken<IClientPedPort>, FiveMClientPedPort)
-      ctx.bindSingleton(IClientProgressPort as InjectionToken<IClientProgressPort>, FiveMClientProgressPort)
+      ctx.bindSingleton(
+        IClientProgressPort as InjectionToken<IClientProgressPort>,
+        FiveMClientProgressPort,
+      )
       ctx.bindSingleton(
         IClientSpawnPort as InjectionToken<IClientSpawnPort>,
         FiveMClientSpawnBridge,
       )
-      ctx.bindSingleton(IClientVehiclePort as InjectionToken<IClientVehiclePort>, FiveMClientVehiclePort)
+      ctx.bindSingleton(
+        IClientVehiclePort as InjectionToken<IClientVehiclePort>,
+        FiveMClientVehiclePort,
+      )
       ctx.bindFactory(IClientSpawnBridge as InjectionToken<IClientSpawnBridge>, () =>
         ctx.container.resolve(IClientSpawnPort as InjectionToken<IClientSpawnPort>),
       )
-      ctx.bindSingleton(IClientBlipBridge as InjectionToken<IClientBlipBridge>, FiveMClientBlipBridge)
+      ctx.bindSingleton(
+        IClientBlipBridge as InjectionToken<IClientBlipBridge>,
+        FiveMClientBlipBridge,
+      )
       ctx.bindSingleton(
         IClientMarkerBridge as InjectionToken<IClientMarkerBridge>,
         FiveMClientMarkerBridge,

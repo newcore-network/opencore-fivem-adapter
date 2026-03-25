@@ -6,6 +6,7 @@ export class FiveMExports extends IExports {
   }
 
   getResource<T = any>(resourceName: string): T | undefined {
+    // biome-ignore lint/suspicious/noExplicitAny: exports collision
     return (globalThis as any).exports?.[resourceName] as T | undefined
   }
 }

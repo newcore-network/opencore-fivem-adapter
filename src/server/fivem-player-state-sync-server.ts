@@ -1,5 +1,9 @@
 import { inject, injectable } from 'tsyringe'
-import { IEntityServer, IPlayerServer, IPlayerStateSyncServer } from '@open-core/framework/contracts/server'
+import {
+  IEntityServer,
+  IPlayerServer,
+  IPlayerStateSyncServer,
+} from '@open-core/framework/contracts/server'
 
 @injectable()
 export class FiveMPlayerStateSyncServer extends IPlayerStateSyncServer {

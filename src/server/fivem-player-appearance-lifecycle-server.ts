@@ -1,7 +1,11 @@
 import { inject, injectable } from 'tsyringe'
 import { EventsAPI } from '@open-core/framework/contracts'
 import { Players } from '@open-core/framework/server'
-import { IPedAppearanceServer, IPlayerServer, IPlayerAppearanceLifecycleServer } from '@open-core/framework/contracts/server'
+import {
+  IPedAppearanceServer,
+  IPlayerServer,
+  IPlayerAppearanceLifecycleServer,
+} from '@open-core/framework/contracts/server'
 import type { PlayerAppearance } from '@open-core/framework'
 
 @injectable()
@@ -64,14 +68,21 @@ export class FiveMPlayerAppearanceLifecycleServer extends IPlayerAppearanceLifec
   ): void {
     if (appearance.components) {
       for (const [componentId, data] of Object.entries(appearance.components)) {
-        this.pedAdapter.setComponentVariation(ped, parseInt(componentId, 10), data.drawable, data.texture, 2)
+        this.pedAdapter.setComponentVariation(
+          ped,
+          parseInt(componentId, 10),
+          data.drawable,
+          data.texture,
+          2,
+        )
       }
     }
 
     if (appearance.props) {
       for (const [propId, data] of Object.entries(appearance.props)) {
         if (data.drawable === -1) this.pedAdapter.clearProp(ped, parseInt(propId, 10))
-        else this.pedAdapter.setPropIndex(ped, parseInt(propId, 10), data.drawable, data.texture, true)
+        else
+          this.pedAdapter.setPropIndex(ped, parseInt(propId, 10), data.drawable, data.texture, true)
       }
     }
   }

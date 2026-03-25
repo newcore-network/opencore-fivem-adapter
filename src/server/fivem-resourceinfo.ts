@@ -11,7 +11,7 @@ export class FiveMResourceInfo extends IResourceInfo {
   }
 
   getCurrentResourcePath(): string {
-    const fn = (globalThis as any).GetResourcePath
+    const fn = GetResourcePath
     if (typeof fn === 'function') {
       const name = this.getCurrentResourceName()
       if (name) {

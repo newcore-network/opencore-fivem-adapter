@@ -52,7 +52,11 @@ export class FiveMClientPlatformBridge extends IClientPlatformBridge {
     SetModelAsNoLongerNeeded(hash)
   }
 
-  override setEntityAsMissionEntity(entity: number, mission: boolean, scriptHostObject: boolean): void {
+  override setEntityAsMissionEntity(
+    entity: number,
+    mission: boolean,
+    scriptHostObject: boolean,
+  ): void {
     SetEntityAsMissionEntity(entity, mission, scriptHostObject)
   }
 

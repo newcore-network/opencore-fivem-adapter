@@ -65,7 +65,12 @@ export class FiveMClientNotificationBridge extends IClientNotificationBridge {
         return
       case 'floating':
         if (!definition.worldPosition) return
-        SetFloatingHelpTextWorldPosition(1, definition.worldPosition.x, definition.worldPosition.y, definition.worldPosition.z)
+        SetFloatingHelpTextWorldPosition(
+          1,
+          definition.worldPosition.x,
+          definition.worldPosition.y,
+          definition.worldPosition.z,
+        )
         SetFloatingHelpTextStyle(1, 1, 2, -1, 3, 0)
         BeginTextCommandDisplayHelp('STRING')
         AddTextComponentSubstringPlayerName(definition.message)

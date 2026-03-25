@@ -1,5 +1,9 @@
 import { inject, injectable } from 'tsyringe'
-import { IEntityServer, INpcLifecycleServer, IPedServer } from '@open-core/framework/contracts/server'
+import {
+  IEntityServer,
+  INpcLifecycleServer,
+  IPedServer,
+} from '@open-core/framework/contracts/server'
 import type {
   CreateNpcServerRequest,
   CreateNpcServerResult,

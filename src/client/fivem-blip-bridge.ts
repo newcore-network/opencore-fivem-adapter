@@ -1,8 +1,5 @@
 import { injectable } from 'tsyringe'
-import {
-  IClientBlipBridge,
-  type ClientBlipDefinition,
-} from '@open-core/framework/contracts/client'
+import { IClientBlipBridge, type ClientBlipDefinition } from '@open-core/framework/contracts/client'
 
 @injectable()
 export class FiveMClientBlipBridge extends IClientBlipBridge {

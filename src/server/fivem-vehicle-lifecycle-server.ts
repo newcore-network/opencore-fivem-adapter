@@ -1,6 +1,10 @@
 import { inject, injectable } from 'tsyringe'
 import { IPlatformContext } from '@open-core/framework/contracts/server'
-import { IPlayerServer, IVehicleLifecycleServer, IVehicleServer } from '@open-core/framework/contracts/server'
+import {
+  IPlayerServer,
+  IVehicleLifecycleServer,
+  IVehicleServer,
+} from '@open-core/framework/contracts/server'
 import { EventsAPI } from '@open-core/framework/contracts'
 import type {
   CreateVehicleServerRequest,
