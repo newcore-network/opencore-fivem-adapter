@@ -1,4 +1,5 @@
 import { inject, injectable, type InjectionToken } from 'tsyringe'
+import { SYSTEM_EVENTS } from '@open-core/framework'
 import { IPlatformContext } from '@open-core/framework/contracts/server'
 import {
   IPlayerServer,
@@ -61,6 +62,6 @@ export class FiveMVehicleLifecycleServer extends IVehicleLifecycleServer {
     const ped = this.playerServer.getPed(request.playerSrc)
     if (!vehicle || !ped) return
 
-    this.events.emit('opencore:vehicle:warpInto', clientId, request.networkId, request.seatIndex)
+    this.events.emit(SYSTEM_EVENTS.vehicle.warpInto, clientId, request.networkId, request.seatIndex)
   }
 }

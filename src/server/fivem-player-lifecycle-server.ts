@@ -1,5 +1,6 @@
 import { inject, injectable, type InjectionToken } from 'tsyringe'
 import { EventsAPI } from '@open-core/framework/contracts'
+import { SYSTEM_EVENTS } from '@open-core/framework'
 import {
   IPlayerLifecycleServer,
   type RespawnPlayerRequest,
@@ -17,7 +18,7 @@ export class FiveMPlayerLifecycleServer extends IPlayerLifecycleServer {
     const target = this.resolveTarget(playerSrc)
     if (!target) return
 
-    this.events.emit('opencore:spawner:spawn', target, {
+    this.events.emit(SYSTEM_EVENTS.spawner.spawn, target, {
       position: request.position,
       model: request.model,
       heading: request.heading,
@@ -28,13 +29,13 @@ export class FiveMPlayerLifecycleServer extends IPlayerLifecycleServer {
   teleport(playerSrc: string, request: TeleportPlayerRequest): void {
     const target = this.resolveTarget(playerSrc)
     if (!target) return
-    this.events.emit('opencore:spawner:teleport', target, request.position, request.heading)
+    this.events.emit(SYSTEM_EVENTS.spawner.teleport, target, request.position, request.heading)
   }
 
   respawn(playerSrc: string, request: RespawnPlayerRequest): void {
     const target = this.resolveTarget(playerSrc)
     if (!target) return
-    this.events.emit('opencore:spawner:respawn', target, request.position, request.heading)
+    this.events.emit(SYSTEM_EVENTS.spawner.respawn, target, request.position, request.heading)
   }
 
   private resolveTarget(playerSrc: string) {

@@ -1,5 +1,6 @@
 import { inject, injectable, type InjectionToken } from 'tsyringe'
 import { EventsAPI } from '@open-core/framework/contracts'
+import { SYSTEM_EVENTS } from '@open-core/framework'
 import { Players } from '@open-core/framework/server'
 import {
   IPedAppearanceServer,
@@ -37,7 +38,7 @@ export class FiveMPlayerAppearanceLifecycleServer extends IPlayerAppearanceLifec
       return { success: false, errors: ['Player not found'] }
     }
 
-    this.events.emit('opencore:appearance:apply', target, appearance)
+    this.events.emit(SYSTEM_EVENTS.appearance.apply, target, appearance)
     return { success: true, appearance }
   }
 
@@ -57,7 +58,7 @@ export class FiveMPlayerAppearanceLifecycleServer extends IPlayerAppearanceLifec
     this.pedAdapter.setDefaultComponentVariation(ped)
     const target = this.resolveTarget(playerSrc)
     if (!target) return false
-    this.events.emit('opencore:appearance:reset', target)
+    this.events.emit(SYSTEM_EVENTS.appearance.reset, target)
     return true
   }
 
