@@ -15,9 +15,12 @@ export class FiveMRuntimeBridge extends IClientRuntimeBridge {
     return 'default'
   }
 
-  on(eventName: string, handler: (...args: unknown[]) => void | Promise<void>): void {
+  on<TArgs extends readonly unknown[]>(
+    eventName: string,
+    handler: (...args: TArgs) => void | Promise<void>,
+  ): void {
     on(eventName, (...args: unknown[]) => {
-      void handler(...args)
+      void handler(...(args as unknown as TArgs))
     })
   }
 
@@ -72,7 +75,10 @@ export class FiveMRuntimeBridge extends IClientRuntimeBridge {
     SetNuiFocusKeepInput(keepInput)
   }
 
-  registerExport(exportName: string, handler: (...args: unknown[]) => unknown): void {
+  registerExport<TArgs extends readonly unknown[], TResult = unknown>(
+    exportName: string,
+    handler: (...args: TArgs) => TResult,
+  ): void {
     exports(exportName, handler)
   }
 }

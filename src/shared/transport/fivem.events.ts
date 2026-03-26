@@ -14,10 +14,13 @@ export class FiveMEvents extends EventsAPI<RuntimeContext> {
     super()
   }
 
-  on(event: string, handler: (ctx: { clientId?: number; raw?: unknown }, ...args: unknown[]) => void): void {
+  on<TArgs extends readonly unknown[]>(
+    event: string,
+    handler: (ctx: { clientId?: number; raw?: unknown }, ...args: TArgs) => void | Promise<void>,
+  ): void {
     onNet(event, (...args: unknown[]) => {
       const sourceId = this.context === 'server' ? source : undefined
-      handler({ clientId: sourceId, raw: sourceId }, ...args)
+      void handler({ clientId: sourceId, raw: sourceId }, ...(args as unknown as TArgs))
     })
   }
 
