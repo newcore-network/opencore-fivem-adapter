@@ -31,8 +31,8 @@ importers:
         specifier: 2.0.27366-1
         version: 2.0.27366-1
       '@open-core/framework':
-        specifier: file:../opencore-framework
-        version: file:../opencore-framework(reflect-metadata@0.2.2)(tsyringe@4.10.0)(zod@4.3.6)
+        specifier: latest
+        version: 1.0.5(reflect-metadata@0.2.2)(tsyringe@4.10.0)(zod@4.3.6)
       '@types/node':
         specifier: ^25.5.0
         version: 25.5.0
@@ -101,8 +101,8 @@ packages:
   '@citizenfx/server@2.0.27366-1':
     resolution: {integrity: sha512-9k59nqzIO1XC365++rTAPOEH4DNJW0Z2J24VARLxlfAW4/Ewf3FGMCl6qyIl/SDhxJJrFWp3s6eWS9kmWBYxeg==}
 
-  '@open-core/framework@file:../opencore-framework':
-    resolution: {directory: ../opencore-framework, type: directory}
+  '@open-core/framework@1.0.5':
+    resolution: {integrity: sha512-BbAwFDYi3w/dfDPP/nmH+4Ub0YCsuQbikTWX/qzDpaKeJjamtR1jQrM0c5bnqihsfSav5EZ1zoUi7A9fIxTV8Q==}
     peerDependencies:
       reflect-metadata: ^0.2.2
       tsyringe: ^4.10.0
@@ -556,7 +556,7 @@ snapshots:
 
   '@citizenfx/server@2.0.27366-1': {}
 
-  '@open-core/framework@file:../opencore-framework(reflect-metadata@0.2.2)(tsyringe@4.10.0)(zod@4.3.6)':
+  '@open-core/framework@1.0.5(reflect-metadata@0.2.2)(tsyringe@4.10.0)(zod@4.3.6)':
     dependencies:
       reflect-metadata: 0.2.2
       tsyringe: 4.10.0

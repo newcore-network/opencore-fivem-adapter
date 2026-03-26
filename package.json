@@ -52,7 +52,7 @@
     "@biomejs/biome": "^2.4.8",
     "@citizenfx/client": "2.0.27366-1",
     "@citizenfx/server": "2.0.27366-1",
-    "@open-core/framework": "file:../opencore-framework",
+    "@open-core/framework": "latest",
     "@types/node": "^25.5.0",
     "typescript": "^6.0.2"
   },
