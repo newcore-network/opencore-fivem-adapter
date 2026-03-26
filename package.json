@@ -1,6 +1,6 @@
 {
   "name": "@open-core/fivem-adapter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "External FiveM adapter for OpenCore framework.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
