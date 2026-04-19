@@ -46,17 +46,18 @@
   "license": "MPL-2.0",
   "packageManager": "pnpm@10.13.1",
   "peerDependencies": {
+    "@open-core/framework": "^1.0.12",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.10.0",
     "zod": "^4.3.5"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.10",
-    "@citizenfx/client": "2.0.27366-1",
-    "@citizenfx/server": "2.0.27366-1",
-    "@open-core/framework": "latest",
-    "@types/node": "^25.5.0",
-    "typescript": "^6.0.2"
+    "@biomejs/biome": "^2.4.12",
+    "@citizenfx/client": "2.0.28108-1",
+    "@citizenfx/server": "2.0.28108-1",
+    "@open-core/framework": "^1.0.12",
+    "@types/node": "^25.6.0",
+    "typescript": "^6.0.3"
   },
   "dependencies": {
     "biome": "^0.3.3"
