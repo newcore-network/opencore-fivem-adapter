@@ -38,7 +38,9 @@ export class FiveMClientSpawnBridge extends IClientSpawnPort {
 
   async spawn(request: SpawnRequest): Promise<SpawnExecutionResult> {
     await this.fadeOutIfSupported()
-    this.closeLoadingScreens()
+    if (!request.skipLoadingScreenShutdown) {
+      this.closeLoadingScreens()
+    }
     await this.setPlayerModel(request.model)
 
     const ped = await this.ensurePed()

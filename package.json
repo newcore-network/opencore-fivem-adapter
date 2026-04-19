@@ -33,7 +33,9 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.build.json --noEmit",
-    "check": "pnpm typecheck && pnpx @biomejs/biome check --write"
+    "check": "pnpx @biomejs/biome check .",
+    "check:fix": "pnpx @biomejs/biome check --write .",
+    "validate": "pnpm typecheck && pnpm build"
   },
   "keywords": [
     "opencore",

@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@open-core/framework': link:../opencore-framework
+
 importers:
 
   .:
@@ -31,8 +34,8 @@ importers:
         specifier: 2.0.27366-1
         version: 2.0.27366-1
       '@open-core/framework':
-        specifier: latest
-        version: 1.0.6(reflect-metadata@0.2.2)(tsyringe@4.10.0)(zod@4.3.6)
+        specifier: link:../opencore-framework
+        version: link:../opencore-framework
       '@types/node':
         specifier: ^25.5.0
         version: 25.5.0
@@ -100,13 +103,6 @@ packages:
 
   '@citizenfx/server@2.0.27366-1':
     resolution: {integrity: sha512-9k59nqzIO1XC365++rTAPOEH4DNJW0Z2J24VARLxlfAW4/Ewf3FGMCl6qyIl/SDhxJJrFWp3s6eWS9kmWBYxeg==}
-
-  '@open-core/framework@1.0.6':
-    resolution: {integrity: sha512-DkFfWn8qzJdl6XiExM9j3hn+tvcjU++N/H7iL1/2Bm57LfrEcN/o6vLHCKzhx9lPEXhdX0A7nTJ3bVKJYCTecA==}
-    peerDependencies:
-      reflect-metadata: ^0.2.2
-      tsyringe: ^4.10.0
-      zod: ^4.3.5
 
   '@types/node@25.5.0':
     resolution: {integrity: sha512-jp2P3tQMSxWugkCUKLRPVUpGaL5MVFwF8RDuSRztfwgN1wmqJeMSbKlnEtQqU8UrhTmzEmZdu2I6v2dpp7XIxw==}
@@ -496,10 +492,6 @@ packages:
     resolution: {integrity: sha512-KMWqdlOcjCYdtIJpicDSFBQ8nFwS2i9sslAd6f4+CBGcU4gist2REnr2fxj2YocvJFxSF3ZOHLYLVZnUxv4BZQ==}
     engines: {node: '>=0.10.0'}
 
-  uuid@13.0.0:
-    resolution: {integrity: sha512-XQegIaBTVUjSHliKqcnFqYypAd4S+WCYt5NIeRs6w/UAry7z8Y9j5ZwRRL4kzq9U3sD6v+85er9FvkEaBpji2w==}
-    hasBin: true
-
   uuid@3.4.0:
     resolution: {integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==}
     deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
@@ -555,13 +547,6 @@ snapshots:
   '@citizenfx/client@2.0.27366-1': {}
 
   '@citizenfx/server@2.0.27366-1': {}
-
-  '@open-core/framework@1.0.6(reflect-metadata@0.2.2)(tsyringe@4.10.0)(zod@4.3.6)':
-    dependencies:
-      reflect-metadata: 0.2.2
-      tsyringe: 4.10.0
-      uuid: 13.0.0
-      zod: 4.3.6
 
   '@types/node@25.5.0':
     dependencies:
@@ -976,8 +961,6 @@ snapshots:
   user-home@2.0.0:
     dependencies:
       os-homedir: 1.0.2
-
-  uuid@13.0.0: {}
 
   uuid@3.4.0: {}
 

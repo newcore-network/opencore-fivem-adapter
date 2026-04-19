@@ -23,6 +23,7 @@ export class FiveMPlayerLifecycleServer extends IPlayerLifecycleServer {
       model: request.model,
       heading: request.heading,
       appearance: request.appearance,
+      skipLoadingScreenShutdown: request.skipLoadingScreenShutdown,
     })
   }
 
